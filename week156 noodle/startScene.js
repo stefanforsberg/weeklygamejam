@@ -15,11 +15,27 @@ class StartScene extends Phaser.Scene {
         this.load.image('timedouble', 'timedouble.png');
         this.load.image('title', 'title.png');
 
+        this.load.audio('boilsound', [
+            'boilsound.ogg',
+            'boilsound.mp3'
+        ]);
+
+        this.load.audio('song', [
+            '10.ogg',
+            '10.mp3'
+        ]);
+
+        this.load.audio('drop', [
+            'drop.wav'
+        ]);
+
         
     }
 
     create() {
         
+
+
         this.loadingText.visible = false;
 
         this.scene.start('MainScene');
@@ -74,6 +90,8 @@ class LabelScene extends Phaser.Scene {
         l2.on('pointerdown', () => {this.levelSelector.visible = false; this.mainScene.level2()}, this);
 
         var l3 = this.add.rectangle(170,115,70,50, "#000000", 0.0)
+        l3.setInteractive();
+        l3.on('pointerdown', () => {this.levelSelector.visible = false; this.mainScene.level3()}, this);
 
         this.levelSelector.add(background);
         this.levelSelector.add(l1);

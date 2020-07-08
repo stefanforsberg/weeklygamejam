@@ -52,6 +52,14 @@ class MainScene extends Phaser.Scene {
 
     resetLevel() {
 
+        if(this.clockRealTimeEvent) {
+            this.clockRealTimeEvent.remove();
+        }
+
+        if(this.clockTimeEvent) {
+            this.clockTimeEvent.remove();
+        }
+
         this.noodle.visible = false;
 
         this.noodle.y = 500;
@@ -65,7 +73,7 @@ class MainScene extends Phaser.Scene {
         this.clock.setText("00:00");
         this.gameState.levelStarted = false;
 
-        this.level1();
+        // this.level1();
     }
 
     noodleEvent() {
@@ -76,7 +84,8 @@ class MainScene extends Phaser.Scene {
 
     endLevel() {
         this.scene.pause();
-        console.log(this.clockRealTimeEvent.getElapsed())
+
+        this.labelScene.showScore(this.gameState.level.endTime, this.clockRealTimeEvent.getElapsed())
     }
 
     startLevel() {
@@ -88,6 +97,8 @@ class MainScene extends Phaser.Scene {
         this.noodle.visible = true;
 
         this.scene.resume()
+
+
 
         this.clockRealTimeEvent = this.time.addEvent({ delay: 100000, loop: true });
 
@@ -167,8 +178,11 @@ class MainScene extends Phaser.Scene {
 
 
     level1() {
+
+        this.resetLevel();
+
         this.gameState.level = {
-            endTime: 14000,
+            endTime: 23000,
             cookTimeText: "Cook for 00:20"
         }
 

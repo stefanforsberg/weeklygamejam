@@ -12,15 +12,15 @@
 
 </head>
 
-<body style="margin: 0; background-color: #67B2C7">
+<body style="margin: 0; background-image: url(bg.png);">
     <div id="content"></div>
 
     <script>
         var config = {
             parent: 'content',
-            backgroundColor: 0x67B2C7,
             width: 750,
             height: 1334,
+            transparent: true,
             scale: {
                 mode: Phaser.Scale.FIT,
                 autoCenter: Phaser.Scale.CENTER_BOTH
@@ -35,7 +35,8 @@
             autoRound: false,
             scene: [
                 StartScene,
-                MainScene
+                MainScene,
+                LabelScene
             ]
         };
 

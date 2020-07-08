@@ -11,6 +11,7 @@ class StartScene extends Phaser.Scene {
         this.load.image('noodle', 'noodle.png');
         this.load.image('bubble', 'bubble.png');
         this.load.image('brocolli', 'brocolli.png');
+        this.load.image('carrot', 'carrot.png');
         this.load.image('timedouble', 'timedouble.png');
         this.load.image('title', 'title.png');
 
@@ -64,13 +65,15 @@ class LabelScene extends Phaser.Scene {
 
         var background = this.add.image(0,0,'title');
 
-        var l1 = this.add.rectangle(-170,115,70,50, "#000000", 0.5)
+        var l1 = this.add.rectangle(-170,115,70,50, "#000000", 0.0)
         l1.setInteractive();
         l1.on('pointerdown', () => {this.levelSelector.visible = false; this.mainScene.level1()}, this);
 
-        var l2 = this.add.rectangle(0,115,70,50, "#000000", 0.5)
+        var l2 = this.add.rectangle(0,115,70,50, "#000000", 0.0)
+        l2.setInteractive();
+        l2.on('pointerdown', () => {this.levelSelector.visible = false; this.mainScene.level2()}, this);
 
-        var l3 = this.add.rectangle(170,115,70,50, "#000000", 0.5)
+        var l3 = this.add.rectangle(170,115,70,50, "#000000", 0.0)
 
         this.levelSelector.add(background);
         this.levelSelector.add(l1);
@@ -83,7 +86,7 @@ class LabelScene extends Phaser.Scene {
     }
 
     showLevelSelector() {
-        this.mainScene.resetLevel();
+        this.mainScene.scene.restart();
         this.levelSelector.visible = true;
     }
 
